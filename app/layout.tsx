@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import Link from "next/link";
+import PoppedPathname from "./popped-pathname";
+import PoppedPathnameWithTransition from "./popped-pathname-with-transition";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -16,7 +19,21 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={`${inter.className} m-4`}>
+        <nav className="flex gap-4 border-2 p-1">
+          <Link href="/">Home</Link>
+          <Link href="/1">Page 1</Link>
+          <Link href="/2">Page 2</Link>
+          <Link href="/3">Page 3</Link>
+        </nav>
+
+        <div className="mt-4">
+          <PoppedPathname />
+          <PoppedPathnameWithTransition />
+        </div>
+
+        <main className="mt-4">{children}</main>
+      </body>
     </html>
   );
 }
